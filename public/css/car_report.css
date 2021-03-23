@@ -1,0 +1,163 @@
+@page {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+}
+
+.page {
+  padding: 5mm;
+  margin: 0;
+  width: 210mm;
+  height: 147mm;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  page-break-after: always;
+}
+
+@media screen {
+  body {
+    background: #e0e0e0;
+  }
+
+  .page {
+    background: white;
+    box-shadow: 0 0.5mm 2mm rgba(0, 0, 0, 0.3);
+    margin: 5mm auto;
+  }
+}
+
+@media print {
+  body {
+    width: 210mm;
+  }
+
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+}
+
+.header {
+  line-height: 10mm;
+  font-size: 4mm;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.header .number {
+  padding-left: 8mm;
+}
+
+.header img {
+  float: right;
+  height: 8mm;
+}
+
+.container {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.divider {
+  border-top: solid #66cc00 1.5mm;
+  height: 1mm;
+  border-bottom: solid #66cc00 1mm;
+  margin-bottom: 2mm;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.warning {
+  font-size: 4.2mm;
+  text-align: center;
+  border: solid black 2px;
+  padding: 1mm;
+}
+
+.warning img {
+  margin-top: 1mm;
+  width: 90mm;
+}
+
+table caption {
+  font-size: 4mm;
+  font-weight: bold;
+  padding-bottom: 0.5mm;
+}
+
+table th,
+table td {
+  font-size: 3.8mm;
+  border: solid black 2px;
+  padding: 0.5mm;
+}
+
+.left-part table td:first-child {
+  width: 48mm;
+}
+
+.right-part table td:first-child {
+  width: 40mm;
+}
+
+.left-part,
+.right-part {
+  vertical-align: top;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.left-part {
+  width: 55%;
+  padding-right: 3mm;
+}
+
+.right-part {
+  float: right;
+  width: 45%;
+}
+
+.left-part > div {
+  padding-bottom: 3mm;
+}
+
+.right-part > div {
+  padding-bottom: 3mm;
+}
+
+table.claas th,
+table.claas td {
+  border-color: #ffff00;
+  font-style: italic;
+}
+
+.center {
+  text-align: center;
+}
+
+.location-map {
+  width: 180mm;
+  max-height: 70mm;
+  margin-bottom: 10mm;
+}
+
+.rules-header {
+  font-size: 5mm;
+  font-weight: bold;
+  text-align: center;
+}
+
+.rules-text {
+  font-size: 3.5mm;
+}
+
+.no-print button {
+  margin: 10px;
+}
+
