@@ -35,11 +35,14 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::middleware('cors')->post('/getuser', [UserController::class, 'getuser']);
 
     //act api
-    Route::middleware('cors')->post('/act/store', [ActController::class, 'store']);
+    Route::middleware('cors')->post('/act', [ActController::class, 'store']);
     Route::middleware('cors')->post('/act/changestatus', [ActController::class, 'changeStatus']);
-    Route::middleware('cors')->post('/act', [ActController::class, 'index']);
+    Route::middleware('cors')->get('/act', [ActController::class, 'index']);
 
     //worker api
-    Route::middleware('cors')->get('/act-worker/{id}', [WorkerController::class, 'indexByActId']);
+    Route::middleware('cors')->get('/worker/{id}', [WorkerController::class, 'indexByActId']);
+    Route::middleware('cors')->put('/worker/{id}', [WorkerController::class, 'update']);
+    Route::middleware('cors')->post('/worker/detach', [WorkerController::class, 'destroy']);
+    Route::middleware('cors')->post('/worker/{id}', [WorkerController::class, 'addFile']);
     Route::middleware('cors')->post('/worker', [WorkerController::class, 'store']);
 });

@@ -50,10 +50,12 @@ class WorkerController extends Controller
         
         foreach($workers as $worker) {
             $resp = [];
+            $resp['id'] = $worker->id;
             $resp['name'] = $worker->name;
             $resp['surname'] = $worker->surname;
             $resp['patronymic'] = $worker->patronymic;
             $resp['position'] = $worker->position;
+            $resp['approve_doc_status'] = $worker->approve_doc_status;
             $resp['firm'] = $worker->firm->name;
 
             $files = [];
@@ -116,6 +118,7 @@ class WorkerController extends Controller
                         $addVisitor->surname = $request->{$index . "-surname"};
                         $addVisitor->patronymic = $request->{$index . "-patronymic"};
                         $addVisitor->position = $request->{$index . "-position"};
+                        $addVisitor->approve_doc_status = 'new';
                         $addVisitor->save();
 
                         //firm
@@ -150,8 +153,6 @@ class WorkerController extends Controller
                     $isIncomeData = false;
                 }
             }
-            // $path = $request->file('files')->store('avatars');
-            // return  $request->file('files')->getClientOriginalName();
         });
 
 
@@ -181,7 +182,7 @@ class WorkerController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update status of worker.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -189,7 +190,24 @@ class WorkerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $visitor = Visitor::where('id', $id)->first();
+        $visitor->approve_doc_status = $request->status;
+        $visitor->save();
+
+        return $visitor;
+    }
+
+    public function addFile(Request $request, $id)
+    {
+        $path = $request->file('file')->store('public/docs');
+
+        $document = new Document;
+        $document->path = $path;
+        $document->name = $request->file->getClientOriginalName();
+        $document->visitor_id = $id;
+        $document->save();
+
+        return $document;
     }
 
     /**
@@ -198,8 +216,10 @@ class WorkerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $workers = Act::where('id', $request->actId)->first()->workers()->detach($request->id);
+
+        return json_decode($workers);
     }
 }
