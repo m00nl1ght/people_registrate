@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ActContriller;
 use App\Http\Controllers\SecurityController;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\CarController;
@@ -85,10 +86,11 @@ Route::post('/incident/update/{id}', [IncidentController::class, 'update'])->nam
 Route::get('/incident/destroy/{id}', [IncidentController::class, 'destroy'])->name('incident-destroy');
 
 //Route для формы акта-допуска
-Route::get('/act/act_form', 'ActController@create')->name('act-form');
+// Route::get('/act/act_form', 'ActController@create')->name('act-form');
 // Route::post('/act/submit', 'ActController@store')->name('act-store');
 // Route::get('/act/print/{id}', 'ActController@print')->name('act-print');
-// Route::get('/act/index', 'ActController@index')->name('act-index');
+Route::view('/act', 'act')->name('act');
+// Route::get('/act/index', [ActController::class, 'index'])->name('act-index');
 // Route::post('/act/update/{id}', 'ActController@update')->name('act-update');
 // Route::get('/act/approval', 'ActController@approval')->name('act-approval');
 

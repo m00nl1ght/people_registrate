@@ -16,12 +16,12 @@ class ManageCheckboxesTable extends Migration
         Schema::dropIfExists('act_checkbox');
 
         Schema::table('checkboxes', function(Blueprint $table) {
-            $table->dropColumn('name');
-            $table->dropColumn('description');
-            $table->dropColumn('category');
+            // $table->dropColumn('name');
+            // $table->dropColumn('description');
+            // $table->dropColumn('category');
 
-            $table->dropForeign(['parent_id']);
-            $table->dropColumn('parent_id');
+            // $table->dropForeign(['parent_id']);
+            // $table->dropColumn('parent_id');
 
             $table->json('options');
             $table->unsignedBigInteger('act_id');

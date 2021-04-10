@@ -24,7 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/register', [AuthController::class, 'register']);
-Route::middleware('cors')->post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
     //тестовый api

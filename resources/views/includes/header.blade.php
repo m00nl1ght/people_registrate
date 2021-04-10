@@ -7,7 +7,7 @@
 
   <nav class="my-2 my-md-0 mr-md-3">
     <a class="p-2 text-dark" href="/">КПП 1</a>
-    <a class="p-2 text-dark" href="{{ route('act-form') }}">Акт-допуск</a>
+    <a class="p-2 text-dark" href="{{ route('act') }}">Акт-допуск</a>
   </nav>
 
   @if(Auth::check())
